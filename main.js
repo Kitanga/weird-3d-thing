@@ -56,7 +56,9 @@ function addBoulder(posx, posy, points, boulder = [
         } = boulder; y < length; y++) {
         for (let x = 0, length2 = boulder[y].length; x < length2; x++) {
             // 
-            points[y + posy][x + posx].elevation = boulder[y][x];
+            if (!!points[y + posy] && !!points[y + posy][x + posx]) {
+                points[y + posy][x + posx].elevation = boulder[y][x];
+            }
         }
     }
 }
