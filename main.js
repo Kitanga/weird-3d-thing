@@ -194,15 +194,20 @@ function rotate(points) {
 let count = 0;
 let timeDiff = 0;
 
-function loop(time) {
-    update(plain);
-    addBoulder(0, 0, points, plain);
-    addSine1(points, count);
-    count += 43;
-    // rotate(points);
-    project(points);
-    drawFaces(points);
+let DT = 1000 / 60;
+let next = 0;
 
+function loop(time) {
+    if (time >= next) {
+        next = time + DT;
+        update(plain);
+        addBoulder(0, 0, points, plain);
+        addSine1(points, count);
+        count += 43;
+        // rotate(points);
+        project(points);
+        drawFaces(points);
+    }
     requestAnimationFrame(loop);
 }
 
